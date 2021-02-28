@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "134778391384",
+    "project_id": "visit-saltus",
+    "storage_bucket": "visit-saltus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134778391384:android:59a6c05a0488c0fdf3f32d",
+        "android_client_info": {
+          "package_name": "com.visit_saltus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134778391384-d7ahlisfcs87i3kbftc0l8esqgpjmbgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGHreoSXWLoSjMAstUBZfD7JAdUqJjQcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134778391384-d7ahlisfcs87i3kbftc0l8esqgpjmbgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
