@@ -180,29 +180,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                       showDialog(
                                           context: context,
                                           barrierDismissible: true,
-                                          child: AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10.0))),
-                                            title: new Text('تأكيد'),
-                                            content: new Text(
-                                                'هل أنت متأكد من تسجيل الخروج؟'),
-                                            actions: <Widget>[
-                                              new FlatButton(
-                                                child: new Text('تسجيل خروج'),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                  logout();
-                                                },
-                                              ),
-                                              new FlatButton(
-                                                child: new Text('الغاء'),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              ),
-                                            ],
-                                          ));
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0))),
+                                              title: new Text('تأكيد'),
+                                              content: new Text(
+                                                  'هل أنت متأكد من تسجيل الخروج؟'),
+                                              actions: <Widget>[
+                                                new FlatButton(
+                                                  child: new Text('تسجيل خروج'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                    logout();
+                                                  },
+                                                ),
+                                                new FlatButton(
+                                                  child: new Text('الغاء'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          });
                                     })))
                       ],
                     )

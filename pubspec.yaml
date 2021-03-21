@@ -30,7 +30,7 @@ dependencies:
   firebase_storage:
   firebase_core:
   image_picker:
-  flutter_svg:
+  flutter_svg: ^0.19.3
   flutter_rating:
   provider:
   search_map_place:
