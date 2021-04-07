@@ -54,14 +54,11 @@ class Splash_Screen extends StatelessWidget {
                 FittedBox(
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return MainIntroductionScreen();
-                          },
-                        ),
-                      );
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                        builder: (context) {
+                          return MainIntroductionScreen();
+                        },
+                      ), (route) => false);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 150),

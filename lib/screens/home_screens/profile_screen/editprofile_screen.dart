@@ -247,7 +247,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   Future getImage(ImageSource imgSource) async {
-    final pickedFile = await picker.getImage(source: imgSource);
+    final pickedFile = await ImagePicker.pickImage(source: imgSource);
 
     setState(() {
       if (pickedFile != null) {
@@ -299,7 +299,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
   // }
 
   uploadFile() async {
-    final response = await cloudinaryCredentials.uploadFile(_localImage.path);
+    final response =
+        await cloudinaryCredentials.uploadFile(filePath: _localImage.path);
     print(response.secureUrl);
     _updateUser(response.secureUrl);
   }
@@ -318,6 +319,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     setState(() {
       if (result != null) {
         saveUserData(result);
+        populateUser();
       }
     });
   }

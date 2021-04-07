@@ -22,11 +22,21 @@ class Logo extends StatelessWidget {
             Expanded(
               flex: 1,
               child: Text(
-                "Visit Saltus",
+                'Visit Saltus',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w400,
                   color: Color(0xff003556),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'v1.0.7',
+                style: TextStyle(
+                  fontSize: 8,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -42,14 +52,18 @@ class Logo extends StatelessWidget {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String userString = pref.getString('userData');
     if (userString == null) {
-      Future.delayed(Duration(seconds: 5), () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => MainIntroductionScreen()));
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => MainIntroductionScreen()),
+            (route) => false);
       });
     } else {
-      Future.delayed(Duration(seconds: 5), () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage2()));
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage2()),
+            (route) => false);
       });
     }
   }

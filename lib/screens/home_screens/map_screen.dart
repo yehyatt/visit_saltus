@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class MyMapScreen extends StatefulWidget {
   @override
@@ -10,9 +9,9 @@ class MyMapScreen extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyMapScreen> {
-  LatLng _initialPosition = LatLng(32.03148, 35.43408);
+  LatLng _initialPosition = LatLng(32.03148, 35.729313);
   GoogleMapController _controller;
-  Location _location = Location();
+  //Location _location = Location();
   Set<Marker> _markers = Set();
   String searchAddr;
 
@@ -20,7 +19,6 @@ class _HomePageState extends State<MyMapScreen> {
     _controller = _cntrl;
 
     //_location.onLocationChanged.listen((event) {
-    ShowMarkers();
 
     // _controller.animateCamera(
     //   CameraUpdate.newCameraPosition(
@@ -35,6 +33,7 @@ class _HomePageState extends State<MyMapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    createMarkers();
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -47,46 +46,19 @@ class _HomePageState extends State<MyMapScreen> {
             },
             markers: Set<Marker>.of(_markers),
             initialCameraPosition:
-                CameraPosition(target: _initialPosition, zoom: 10),
+                CameraPosition(target: _initialPosition, zoom: 15),
             mapType: MapType.satellite,
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
             mapToolbarEnabled: true,
             compassEnabled: true,
           ),
-          Positioned(
-            top: 30,
-            right: 15,
-            left: 15,
-            child: Container(
-              height: 50.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white),
-              child: TextField(
-                decoration: InputDecoration(
-                    hintText: 'Enter Address',
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
-                    suffixIcon: IconButton(
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
-                        iconSize: 30.0)),
-                onChanged: (val) {
-                  setState(() {
-                    searchAddr = val;
-                  });
-                },
-              ),
-            ),
-          )
         ],
       ),
     );
   }
 
-  void ShowMarkers() {
+  void createMarkers() {
     _markers.add(Marker(
         markerId: MarkerId('mark2'),
         infoWindow: InfoWindow(title: "مطعم الغربال السياحي"),

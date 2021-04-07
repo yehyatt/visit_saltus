@@ -319,8 +319,8 @@ class _LoginPageState extends State<LoginScreen> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String user = jsonEncode(userModel);
     pref.setString('userData', user);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage2()));
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => HomePage2()), (route) => false);
   }
 
   void verifyPhoneNumber(String phone) async {

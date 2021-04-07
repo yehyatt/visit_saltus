@@ -22,8 +22,13 @@ class _otpPageState extends State<OtpScreen> {
   final TextEditingController _smsController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    sendSMSCodeToPhoneNumber(phone);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    verifyPhoneNumber(phone);
     return Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
@@ -149,7 +154,7 @@ class _otpPageState extends State<OtpScreen> {
         ));
   }
 
-  void verifyPhoneNumber(String phone) async {
+  void sendSMSCodeToPhoneNumber(String phone) async {
     PhoneVerificationCompleted verificationCompleted =
         (PhoneAuthCredential phoneAuthCredential) async {
       await _auth.signInWithCredential(phoneAuthCredential);
@@ -173,7 +178,7 @@ class _otpPageState extends State<OtpScreen> {
     try {
       await _auth.verifyPhoneNumber(
           phoneNumber: phone,
-          timeout: const Duration(seconds: 30),
+          timeout: const Duration(seconds: 300),
           verificationCompleted: verificationCompleted,
           verificationFailed: verificationFailed,
           codeSent: codeSent,
@@ -230,11 +235,11 @@ class _otpPageState extends State<OtpScreen> {
               width: 250,
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
                 },
                 color: Colors.red,
                 child: Text(
-                  'Cancel',
+                  'حسنا',
                   style: TextStyle(color: Colors.white),
                 ),
               ),

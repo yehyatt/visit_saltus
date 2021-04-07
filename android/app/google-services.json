@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:134778391384:android:59a6c05a0488c0fdf3f32d",
+        "mobilesdk_app_id": "1:134778391384:android:ce341bbcd20e9356f3f32d",
         "android_client_info": {
           "package_name": "com.visit_saltus"
         }
@@ -29,6 +29,13 @@
             {
               "client_id": "134778391384-d7ahlisfcs87i3kbftc0l8esqgpjmbgg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "134778391384-29jum93g2er7fkkncqrtqv9i51eab82b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.visitSaltus"
+              }
             }
           ]
         }

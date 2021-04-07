@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +16,7 @@ class TypeDetailsScreen extends StatelessWidget {
     return Scaffold(body: Type(title: title, des: des, img: img));
   }
 }
+
 class Type extends StatefulWidget {
   String title;
   String img;
@@ -38,7 +40,7 @@ class TypeState extends State<Type> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         locale: Locale('ar', 'AE'),
         builder: (context, child) {
           return Directionality(
@@ -55,7 +57,6 @@ class TypeState extends State<Type> {
                   ),
                 ),
                 body: SingleChildScrollView(
-
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,25 +82,28 @@ class TypeState extends State<Type> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/images/fill_star.png"),
-                            Image.asset("assets/images/fill_star.png"),
-                            Image.asset("assets/images/fill_star.png"),
-                            Image.asset("assets/images/fill_star.png"),
-                            Image.asset("assets/images/empty_star.png"),
-                          ],
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.center,
+                      //   child: Row(
+                      //     mainAxisAlignment: MainAxisAlignment.center,
+                      //     children: [
+                      //       Image.asset("assets/images/fill_star.png"),
+                      //       Image.asset("assets/images/fill_star.png"),
+                      //       Image.asset("assets/images/fill_star.png"),
+                      //       Image.asset("assets/images/fill_star.png"),
+                      //       Image.asset("assets/images/empty_star.png"),
+                      //     ],
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsets.all(12),
-                        child: Text(
-                          des != null ? des : " ",
-                          style:
-                              TextStyle(fontSize: 25, color: Color(0xff195e83)),
+                        child: Center(
+                          child: Text(
+                            des != null ? des : " ",
+                              textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 25, color: Color(0xff195e83)),
+                          ),
                         ),
                       ),
                     ],

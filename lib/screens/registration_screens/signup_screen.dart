@@ -156,6 +156,7 @@ class _SignUpState extends State<SignUpScreen> {
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(25))),
                       child: TextFormField(
+                        keyboardType: TextInputType.phone,
                         controller: _phoneController,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -196,6 +197,7 @@ class _SignUpState extends State<SignUpScreen> {
                           ),
                           borderRadius: BorderRadius.all(Radius.circular(25))),
                       child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         textAlign: TextAlign.right,
                         autofocus: false,
@@ -463,7 +465,7 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   Future getImage(ImageSource imgSource) async {
-    final pickedFile = await picker.getImage(source: imgSource);
+    final pickedFile = await ImagePicker.pickImage(source: imgSource);
 
     setState(() {
       if (pickedFile != null) {
@@ -541,7 +543,7 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   uploadProfileImage() async {
-    final response = await cloudinary.uploadFile(_image.path);
+    final response = await cloudinary.uploadFile(filePath: _image.path);
     createUserAPI(response.secureUrl);
   }
 
@@ -570,8 +572,8 @@ class _SignUpState extends State<SignUpScreen> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String user = jsonEncode(userModel);
     pref.setString('userData', user);
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage2()));
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => HomePage2()), (route) => false);
   }
 
   //MARK validations

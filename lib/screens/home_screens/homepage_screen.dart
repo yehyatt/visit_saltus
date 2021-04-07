@@ -37,26 +37,58 @@ class _HomePageState extends State<HomePage2> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ScreensList[currentindex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (value) {
-          setState(() {
-            currentindex = value;
-          });
-        },
-        items: mybnt
-            .map(
-              (e) => BottomNavigationBarItem(
-                icon: Icon(e.iconData),
-                title: Text(e.title),
-              ),
-            )
-            .toList(),
-        selectedItemColor: maincolor,
-        unselectedItemColor: maincolor,
-        currentIndex: currentindex,
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        body: ScreensList[currentindex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (value) {
+            setState(() {
+              currentindex = value;
+            });
+          },
+          items: mybnt
+              .map(
+                (e) => BottomNavigationBarItem(
+                  icon: Icon(e.iconData),
+                  title: Text(e.title),
+                ),
+              )
+              .toList(),
+          selectedItemColor: maincolor,
+          unselectedItemColor: maincolor,
+          currentIndex: currentindex,
+        ),
       ),
     );
+  }
+
+  Future<bool> _onBackPressed() {
+    print('back called');
+    if (currentindex == 0) {
+      return showDialog(
+            context: context,
+            builder: (context) => new AlertDialog(
+              title: new Text('Are you sure?'),
+              content: new Text('Do you want to exit the App'),
+              actions: <Widget>[
+                new GestureDetector(
+                  onTap: () => Navigator.of(context).pop(false),
+                  child: Text("NO"),
+                ),
+                SizedBox(height: 16),
+                new GestureDetector(
+                  onTap: () => Navigator.of(context).pop(true),
+                  child: Text("YES"),
+                ),
+              ],
+            ),
+          ) ??
+          false;
+    } else {
+      currentindex = 0;
+      setState(() {});
+      return Future.value(false);
+    }
   }
 }

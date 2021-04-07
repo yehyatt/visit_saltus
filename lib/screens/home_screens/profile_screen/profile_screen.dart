@@ -70,8 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
               color: myHexColor,
             ),
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => EditProfilePage()));
+               goToEditScreen();
             },
           )
         ],
@@ -217,7 +216,13 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  logout() async {
+  void goToEditScreen()async {
+    var result = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) => EditProfilePage()));
+    populateUser();
+  }
+
+    logout() async {
     print('logout');
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.clear();
