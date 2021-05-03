@@ -10,7 +10,6 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:visit_saltus/entities/userModel.dart';
 import 'package:visit_saltus/screens/home_screens/homepage_screen.dart';
-import 'package:visit_saltus/screens/registration_screens/otp.dart';
 import 'package:visit_saltus/services/services_provider.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -514,33 +513,33 @@ class _SignUpState extends State<SignUpScreen> {
   }
 
   _startRegisterProcess() {
-    if (phoneNotVerified) {
-      verifyPhone();
+    // if (phoneNotVerified) {
+    //   verifyPhone();
+    // } else {
+    uploadProfileImage();
+    setState(() {
+      showSpinner = true;
+    });
+    if (_image == null) {
+      createUserAPI("");
     } else {
       uploadProfileImage();
-      setState(() {
-        showSpinner = true;
-      });
-      if (_image == null) {
-        createUserAPI("");
-      } else {
-        uploadProfileImage();
-      }
     }
+    //}
   }
 
-  verifyPhone() async {
-    final isSuccessfullyVerifiedResult = await Navigator.push(
-      context,
-      MaterialPageRoute(
-          builder: (context) =>
-              OtpScreen(phone: '+962' + _phoneController.text)),
-    );
-    if (isSuccessfullyVerifiedResult) {
-      phoneNotVerified = false;
-      _startRegisterProcess();
-    }
-  }
+  // verifyPhone() async {
+  //   final isSuccessfullyVerifiedResult = await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //         builder: (context) =>
+  //             OtpScreen(phone: '+962' + _phoneController.text)),
+  //   );
+  //   if (isSuccessfullyVerifiedResult) {
+  //     phoneNotVerified = false;
+  //     _startRegisterProcess();
+  //   }
+  // }
 
   uploadProfileImage() async {
     final response = await cloudinary.uploadFile(filePath: _image.path);

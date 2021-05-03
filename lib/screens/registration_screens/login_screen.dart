@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -20,7 +19,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginPageState extends State<LoginScreen> {
   final storage = new FlutterSecureStorage();
-  final _auth = FirebaseAuth.instance;
+  //final _auth = FirebaseAuth.instance;
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool isHidePassword = true;
@@ -323,34 +322,34 @@ class _LoginPageState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => HomePage2()), (route) => false);
   }
 
-  void verifyPhoneNumber(String phone) async {
-    PhoneVerificationCompleted verificationCompleted =
-        (PhoneAuthCredential phoneAuthCredential) async {
-      await _auth.signInWithCredential(phoneAuthCredential);
-      print("Phone number automatically verified and user signed in: ");
-    };
-    PhoneVerificationFailed verificationFailed =
-        (FirebaseAuthException authException) {};
-    PhoneCodeSent codeSent =
-        (String verificationId, [int forceResendingToken]) async {
-      print('Please check your phone for the verification code.');
-      _verificationId = verificationId;
-    };
-    PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
-        (String verificationId) {
-      print("verification code: " + verificationId);
-      _verificationId = verificationId;
-    };
-    try {
-      await _auth.verifyPhoneNumber(
-          phoneNumber: phone,
-          timeout: const Duration(seconds: 30),
-          verificationCompleted: verificationCompleted,
-          verificationFailed: verificationFailed,
-          codeSent: codeSent,
-          codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
-    } catch (e) {}
-  }
+  // void verifyPhoneNumber(String phone) async {
+  //   PhoneVerificationCompleted verificationCompleted =
+  //       (PhoneAuthCredential phoneAuthCredential) async {
+  //     await _auth.signInWithCredential(phoneAuthCredential);
+  //     print("Phone number automatically verified and user signed in: ");
+  //   };
+  //   PhoneVerificationFailed verificationFailed =
+  //       (FirebaseAuthException authException) {};
+  //   PhoneCodeSent codeSent =
+  //       (String verificationId, [int forceResendingToken]) async {
+  //     print('Please check your phone for the verification code.');
+  //     _verificationId = verificationId;
+  //   };
+  //   PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+  //       (String verificationId) {
+  //     print("verification code: " + verificationId);
+  //     _verificationId = verificationId;
+  //   };
+  //   try {
+  //     await _auth.verifyPhoneNumber(
+  //         phoneNumber: phone,
+  //         timeout: const Duration(seconds: 30),
+  //         verificationCompleted: verificationCompleted,
+  //         verificationFailed: verificationFailed,
+  //         codeSent: codeSent,
+  //         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
+  //   } catch (e) {}
+  // }
 }
 
 /*String validateMobile(String value) {
